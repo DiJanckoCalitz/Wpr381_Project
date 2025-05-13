@@ -1,2 +1,21 @@
-<h1>Upcoming Events</h1>
-<p>Check out what's happening soon!</p>
+<%- include('../partials/header') %>
+
+<section class="events">
+  <h2>Upcoming Events</h2>
+  <% if (events.length === 0) { %>
+    <p>No upcoming events at the moment. Check back soon!</p>
+  <% } else { %>
+    <ul class="events-list">
+      <% events.forEach(event => { %>
+        <li class="event">
+          <h3><%= event.title %></h3>
+          <p><strong>Date:</strong> <%= event.date %></p>
+          <p><%= event.location %></p>
+          <img src="<%= event.image %>" alt="<%= event.name %> image" class="event-image" />
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</section>
+
+<%- include('../partials/footer') %>

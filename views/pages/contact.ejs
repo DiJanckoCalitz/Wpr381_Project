@@ -1,7 +1,48 @@
-<h1>Contact Us</h1>
-<form method="POST" action="/contact">
-  <input type="text" name="name" placeholder="Your Name" required /><br />
-  <input type="email" name="email" placeholder="Your Email" required /><br />
-  <textarea name="message" placeholder="Your Message" required></textarea><br />
-  <button type="submit">Send</button>
-</form>
+<%- include('../partials/header') %>
+
+<section class="contact">
+  <h2>Contact Us</h2>
+  <% if (errors.length > 0) { %>
+    <div class="errors">
+      <ul>
+        <% errors.forEach(error => { %>
+          <li><%= error %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+
+  <form action="/contact" method="POST" novalidate>
+    <label for="name">Name:</label>
+    <input 
+      type="text" 
+      id="name" 
+      name="name" 
+      value="<%= formData.name ? formData.name : '' %>" 
+      required 
+      placeholder="Your full name"
+    />
+
+    <label for="email">Email:</label>
+    <input 
+      type="email" 
+      id="email" 
+      name="email" 
+      value="<%= formData.email ? formData.email : '' %>" 
+      required 
+      placeholder="your.email@example.com"
+    />
+
+    <label for="message">Message:</label>
+    <textarea 
+      id="message" 
+      name="message" 
+      required 
+      placeholder="Write your message here"
+    ><%= formData.message ? formData.message : '' %></textarea>
+
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>
