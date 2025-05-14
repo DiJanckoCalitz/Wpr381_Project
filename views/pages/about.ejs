@@ -1,9 +1,20 @@
 <%- include('../partials/header') %>
 
 <section class="about">
-  <h2>About Us</h2>
+  <h2 class="section-heading">About Us</h2>
   <p>We are a local organization committed to fostering community engagement and making a positive impact.</p>
   <p>Join us in our mission to create a welcoming and active environment for all.</p>
+
+  <h2 class="section-heading">Team Members </h2>
+
+  <div class="team-grid"> 
+    <% team.forEach(member => { %> <!-- Loop through teammebers array to display name and role -->
+      <div class="team-card">
+        <h3><%= member.name || 'TBA' %></h3>
+        <p><%= member.role %></p>
+      </div>
+    <% }) %>
+  </div>
 </section>
 
 <%- include('../partials/footer') %>

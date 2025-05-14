@@ -1,21 +1,38 @@
 <%- include('../partials/header') %>
 
 <section class="events">
-  <h2>Upcoming Events</h2>
-  <% if (events.length === 0) { %>
-    <p>No upcoming events at the moment. Check back soon!</p>
-  <% } else { %>
-    <ul class="events-list">
-      <% events.forEach(event => { %>
-        <li class="event">
+  <div class="events-header">
+    <h2>Upcoming Events</h2>  
+  </div>
+
+<div class="events-grid">
+  <div class="column">
+    <% events.forEach((event, index) => { %>
+      <% if (index % 2 === 0) { %> <!-- Left column (even index) -->
+        <div class="event-card">
+          <img src="<%= event.image %>" alt="<%= event.title %> image" class="event-image" />
           <h3><%= event.title %></h3>
           <p><strong>Date:</strong> <%= event.date %></p>
-          <p><%= event.location %></p>
-          <img src="<%= event.image %>" alt="<%= event.name %> image" class="event-image" />
-        </li>
-      <% }) %>
-    </ul>
-  <% } %>
+          <p><strong>Location:</strong> <%= event.location %></p>
+        </div>
+      <% } %>
+    <% }) %>
+  </div>
+
+  <div class="divider-column"></div>
+    <div class="column">
+      <% events.forEach((event, index) => { %>
+        <% if (index % 2 === 1) { %> <!-- Right column (odd index) -->
+          <div class="event-card">
+            <img src="<%= event.image %>" alt="<%= event.title %> image" class="event-image" />
+            <h3><%= event.title %></h3>
+            <p><strong>Date:</strong> <%= event.date %></p>
+            <p><strong>Location:</strong> <%= event.location %></p>
+          </div>
+      <% } %>
+    <% }) %>
+    </div>
+  </div>
 </section>
 
 <%- include('../partials/footer') %>

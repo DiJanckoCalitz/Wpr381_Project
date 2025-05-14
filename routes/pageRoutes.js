@@ -6,9 +6,9 @@ const router = express.Router();
 const teamMembers = [
     { name: 'Di-Jancko Calitz ', role: 'Team Lead' },
     { name: 'Petrus Abel Viljoen', role: 'Backend Developer' },
-    { name: '', role: 'Frontend Developer' },
+    { name: 'Lian Bosman, Bokang Phalane ', role: 'Frontend Developers' },
     { name: 'Di-Jancko Calitz ', role: 'Data Manager' },
-    { name: '', role: 'Documentation Manager' }
+    { name: 'Lian Bosman', role: 'Documentation Manager' }
 ];
 
 const events = [
@@ -41,7 +41,7 @@ router.get('/', (req, res) => {
 
 // About page
 router.get('/about', (req, res) => {
-    res.render('pages/about', { title: 'About' });
+    res.render('pages/about', { title: 'About', team: teamMembers });
 });
 
 // Events page
