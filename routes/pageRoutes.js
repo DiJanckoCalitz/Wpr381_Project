@@ -54,6 +54,7 @@ router.get('/contact', (req, res) => {
     res.render('pages/contact.ejs', { title: 'Contact', errors: [], formData: {} });
 });
 
+const contactSubmissions = [];
 // Contact page submit (POST)
 router.post('/contact', (req, res) => {
 
@@ -89,14 +90,20 @@ router.post('/contact', (req, res) => {
     } 
     else 
     { 
-        res.redirect('/thankyou?name=' + encodeURIComponent(name));
+        contactSubmissions.push({name, email, message, submittedAt: new Date()});
+        res.redirect('/thankyou?name=' + encodeURIComponent(name) + '&lastIndex=' + (contactSubmissions.length - 1));
     }
 });
 
 // Thank You page
 router.get('/thankyou', (req, res) => {
-    const name = req.query.name || 'Guest';
-    res.render('pages/thankyou.ejs', { title: 'Thank You', name });
+  const name = req.query.name || 'Guest';
+  const lastIndex = parseInt(req.query.lastIndex, 10);
+  let lastSubmission = null;
+  if (!isNaN(lastIndex) && lastIndex >= 0 && lastIndex < contactSubmissions.length) {
+    lastSubmission = contactSubmissions[lastIndex];
+  }
+  res.render('pages/thankyou', { title: 'Thank You', name, lastSubmission });
 });
 
 // 404 handler
