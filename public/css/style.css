@@ -193,3 +193,42 @@ footer {
   object-fit: cover;      
 }
 
+
+.contact {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #f4f9ff;
+  border: 1px solid #cfe0f7;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.contact h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #003366;
+  margin-bottom: 1.5rem;
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact form input,
+.contact form textarea {
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact form input:focus,
+.contact form textarea:focus {
+  border-color: #004d99;
+  box-shadow: 0 0 5px rgba(0, 77, 153, 0.2);
+}
+
+.contact form button {
+  align-self: flex-start;
+  margin-top: 1rem;
+}
