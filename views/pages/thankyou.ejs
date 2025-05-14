@@ -6,6 +6,14 @@
   <% if (name && name !== 'Guest') { %>
     <p>Your message has been received.</p>
     <a href="/" class="home-link">Return to Home</a>
+
+    <div class="last-submission">
+      <p><strong>Submitted Information:</strong></p>
+      <p>Name: <%= lastSubmission.name %></p>
+      <p>Email: <%= lastSubmission.email %></p>
+      <p><em>Submitted on: <%= lastSubmission.submittedAt.toLocaleString() %></em></p>
+    </div>
+
   <% } else { %>
     <p>Please feel free to send us a message via the <a href="/contact">contact page</a>.</p>
   <% } %>
