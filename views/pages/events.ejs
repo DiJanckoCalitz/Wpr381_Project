@@ -8,7 +8,7 @@
 <div class="events-grid">
   <div class="column">
     <% events.forEach((event, index) => { %>
-      <% if (index % 2 === 0) { %> <!-- Left column (even index) -->
+      <% if (index % 2 === 0) { %> 
         <div class="event-card">
           <img src="<%= event.image %>" alt="<%= event.title %> image" class="event-image" />
           <h3><%= event.title %></h3>
@@ -22,7 +22,7 @@
   <div class="divider-column"></div>
     <div class="column">
       <% events.forEach((event, index) => { %>
-        <% if (index % 2 === 1) { %> <!-- Right column (odd index) -->
+        <% if (index % 2 === 1) { %> 
           <div class="event-card">
             <img src="<%= event.image %>" alt="<%= event.title %> image" class="event-image" />
             <h3><%= event.title %></h3>
