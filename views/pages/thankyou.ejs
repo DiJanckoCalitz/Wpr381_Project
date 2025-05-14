@@ -3,7 +3,7 @@
 <section class="thank-you">
   <h2 class="section-heading">Thank You, <%= name %>!</h2>
 
-  <% if (name && name !== 'Guest') { %>
+  <% if (name && name !== 'Guest') { %> <!-- Check if user has submitted their name, if not, message to go to contact page, if so, thank you message -->
     <p>Your message has been received.</p>
     <a href="/" class="home-link">Return to Home</a>
   <% } else { %>
