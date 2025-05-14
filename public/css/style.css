@@ -3,6 +3,30 @@
   margin: 0;
   padding: 0;
 }
+.home-container{
+  text-align: center;
+  padding: 50px 20px;
+}
+.main-title{
+  font-size: 2.5rem;
+  color: #555;
+}
+.divider{
+  margin: 30px auto;
+  width: 60%;
+  border: 1px solid #ccc;
+}
+.sub-heading{
+  font-style: italic;
+  color: #888;
+}
+.event-placeholder{
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+}
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
