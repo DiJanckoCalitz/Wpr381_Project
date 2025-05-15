@@ -54,57 +54,43 @@ router.get('/contact', (req, res) => {
     res.render('pages/contact.ejs', { title: 'Contact', errors: [], formData: {} });
 });
 
-const contactSubmissions = [];
+
 // Contact page submit (POST)
 router.post('/contact', (req, res) => {
+  const { name, email, message } = req.body;
+  const errors = [];
 
-    const { name, email, message } = req.body;
-    const errors = [];
+  if (!name || name.trim() === '') errors.push('Name is required');
+  if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) errors.push('Valid email is required');
+  if (!message || message.trim() === '') errors.push('Message is required');
 
-    if (!name || name.trim() === '') 
-    {
-        errors.push('Name is required');
-    }
+  if (errors.length > 0) {
+    return res.render('pages/contact', {
+      title: 'Contact',
+      errors,
+      formData: { name, email, message }
+    });
+  }
 
-    if (!email || email.trim() === '') {
-        errors.push('Email is required');
-    } 
-    else 
-    {
-        const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  const lastSubmission = {
+    name,
+    email,
+    message,
+    submittedAt: new Date()
+  };
 
-        if (!emailRegex.test(email)) 
-        {
-        errors.push('Invalid email format');
-        }
-    }
-
-    if (!message || message.trim() === '') 
-    {
-        errors.push('Message is required');
-    }
-
-    if (errors.length > 0) 
-    {
-        res.render('pages/contact.ejs', { title: 'Contact', errors, formData: { name, email, message } });
-    } 
-    else 
-    { 
-        contactSubmissions.push({name, email, message, submittedAt: new Date()});
-        res.redirect('/thankyou?name=' + encodeURIComponent(name) + '&lastIndex=' + (contactSubmissions.length - 1));
-    }
+  res.render('pages/thankyou', {
+    title: 'Thank You',
+    name,
+    lastSubmission
+  });
 });
 
 // Thank You page
 router.get('/thankyou', (req, res) => {
-  const name = req.query.name || 'Guest';
-  const lastIndex = parseInt(req.query.lastIndex, 10);
-  let lastSubmission = null;
-  if (!isNaN(lastIndex) && lastIndex >= 0 && lastIndex < contactSubmissions.length) {
-    lastSubmission = contactSubmissions[lastIndex];
-  }
-  res.render('pages/thankyou', { title: 'Thank You', name, lastSubmission });
+  res.redirect('/contact');
 });
+
 
 // 404 handler
 router.use((req, res) => {
